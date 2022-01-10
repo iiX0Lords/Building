@@ -1,4 +1,5 @@
-local part = _G.part
+local waittime = _G.waittime
+    local part = _G.part
     local BreakOnDeath = _G.BreakOnDeath
 
     local Players = game:GetService("Players")
@@ -20,7 +21,7 @@ local part = _G.part
 
     local loop = coroutine.create(function() --- Creates the loop
 
-        while true do task.wait(.1) --- Shorter the wait the cleaner the part will look but will cause more lag so pick your poison
+        while true do task.wait(waittime) --- Shorter the wait the cleaner the part will look but will cause more lag so pick your poison
                 local fakePart = part --- Just sets that variable because im to lazy to edit the fire laser arguments          
                 
 
