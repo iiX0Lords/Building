@@ -1,4 +1,7 @@
-local Players = game:GetService("Players")
+local part = _G.part
+    local BreakOnDeath = _G.BreakOnDeath
+
+    local Players = game:GetService("Players")
     local broken = false
 
     local Dependencies = loadstring(game:HttpGet(("https://raw.githubusercontent.com/iiX0Lords/Building/main/Dependency1"),true))()
