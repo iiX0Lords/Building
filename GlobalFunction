@@ -1,3 +1,10 @@
+local Dependencies = loadstring(game:HttpGet(("https://raw.githubusercontent.com/iiX0Lords/Building/main/Dependency1"),true))()
+
+if Dependencies == false then
+    broken = true
+end
+
+
 _G.Kill = function(playerchar)
     local args = {
         [1] = "FireOtherClients",
@@ -24,12 +31,6 @@ _G.MakePart = function(part,BreakOnDeath,waittime)
 
     local Players = game:GetService("Players")
     local broken = false
-
-    local Dependencies = loadstring(game:HttpGet(("https://raw.githubusercontent.com/iiX0Lords/Building/main/Dependency1"),true))()
-
-    if Dependencies == false then
-        broken = true
-    end
 
 	local parent = part.Parent --- Gets the parent of the Instance you called
 
