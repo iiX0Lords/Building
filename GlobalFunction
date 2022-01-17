@@ -17,7 +17,7 @@ _G.Kill = function(playerchar)
     workspace.resources.RemoteEvent:FireServer(unpack(args))
 end
 
-_G.Part = function(part,BreakOnDeath,waittime)
+_G.MakePart = function(part,BreakOnDeath,waittime)
     local waittime = waittime
     local part = part
     local BreakOnDeath = BreakOnDeath
