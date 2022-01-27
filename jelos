@@ -1,6 +1,6 @@
-task.wait(1)
+task.wait(10)
 if game.PlaceId == 402122991 then
-task.wait(1)
+task.wait(5)
 loadstring(game:HttpGet(("https://raw.githubusercontent.com/iiX0Lords/Building/main/GlobalFunction"),true))()
 
 local plr = game.Players.LocalPlayer
