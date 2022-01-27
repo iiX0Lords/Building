@@ -86,6 +86,7 @@ _G.FE = function(part,BreakOnDeath,waittime)
                         ["Reflectance"] = 0,
                         ["CanCollide"] = part.CanCollide,
                         ["Orientation"] = part.Orientation,
+			["Name"] = part.Name,
                         ["Shape"] = part.Shape,
                         ["Velocity"] = part.Velocity,
                         ["Size"] = part.Size,
