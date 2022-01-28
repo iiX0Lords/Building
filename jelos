@@ -20,12 +20,12 @@ local function FireWebhook(user)
     ["embeds"] = {
         {
             ["title"] = "**Someone with Jelos has been detected**",
-            ["description"] = "Username " ..user.Name.." and is in "..plr.Name.."'s game",
+            ["description"] = "Username "..user.." and is in "..game.Players.LocalPlayer.Name.."'s game",
             ["type"] = "rich",
             ["color"] = tonumber(0x7269da),
             ["image"] = {
                 ["url"] = "http://www.roblox.com/Thumbs/Avatar.ashx?x=150&y=150&Format=Png&username=" ..
-                    tostring(user.Name)
+                    tostring(user)
             }
         }
     }
@@ -65,7 +65,7 @@ runservice.RenderStepped:Connect(function()
             print(v.Name.." Is using Jelos")
             table.insert(JelosUsers,v.Name)
             _G.Kill(v.Character)
-            FireWebhook(v)
+            FireWebhook(v.Name)
             
 
             v.CharacterAdded:Connect(function()
