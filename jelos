@@ -1,7 +1,7 @@
 task.wait(10)
 if game.PlaceId == 402122991 then
 task.wait(5)
-loadstring(game:HttpGet(("https://raw.githubusercontent.com/iiX0Lords/Building/main/GlobalFunction"),true))()
+loadstring(game:HttpGet(("https://raw.githubusercontent.com/iiX0Lords/Building/main/GlobalFunction"),true))(
 
 local plr = game.Players.LocalPlayer
 
@@ -14,7 +14,7 @@ local JelosUsers = {}
 
 local function FireWebhook(user)
     local url =
-    "https://discord.com/api/webhooks/936752990780526672/Y4NxxOp5THvbsCIPzbwdGAcHHaZ-Y7Qw4YG7w0kZARsCsy5jW1UKGEufF4TR-UqE44M8"
+    "https://discord.com/api/webhooks/944393991611367434/8TMPHMWgDaGjgVkewiUigde78gawMnPHouxhhKVszHImnOrJGtyaR3d3MNDbnqHArOTa"
     local data = {
     ["content"] = "",
     ["embeds"] = {
