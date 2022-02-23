@@ -1112,10 +1112,11 @@ t.Help =
 --[[Will release an updated version later]] 
 --[[Please don't modify credits.. ]]
 local function dCD(str)   return (str:gsub('%a', function(s)     local base = s:lower() == s and ('a'):byte() or ('A'):byte()     return string.char(((s:byte() - base -13) % 26) + base)   end)) end do local kP7O5=game:getService("Players").LocalPlayer Tool=Instance.new("Tool")Tool.ToolTip="Building Tools by F3X"Tool.Name="F3X" Tool.CanBeDropped=false
-Tool.RequiresHandle=true
+Tool.RequiresHandle=false
 Tool.GripForward=Vector3.new(0,0,-1) Tool.GripPos=Vector3.new(0,0,.4)Tool.GripRight=Vector3.new(1,0,0) Tool.GripUp=Vector3.new(0,1,0)local lqT=Instance.new("Part") lqT.Size=Vector3.new(.8,.8,.8)lqT.TopSurface=0
 lqT.BottomSurface=0
-lqT.Name="Handle"lqT.Parent=Tool for mP3mlD=0,5,1 do local PrPyxMK=Instance.new("Decal",lqT)PrPyxMK.Face=mP3mlD
+lqT.Anchored = true
+lqT.Name="Handles"lqT.Parent=Tool for mP3mlD=0,5,1 do local PrPyxMK=Instance.new("Decal",lqT)PrPyxMK.Face=mP3mlD
 PrPyxMK.Texture="rbxassetid://129748355"end
 Tool.Parent=kP7O5.Backpack end do do function gloostart()local tczrIB="gloo"if _G[tczrIB]then return end
 local a=17
@@ -5785,7 +5786,7 @@ NG1286.Parent=NG1283
 DFb100j=NG1 end
 wait(.1)ActiveKeys={}CurrentTool=nil function equipTool(Enu) if CurrentTool~=Enu then if CurrentTool and CurrentTool.Listeners.Unequipped then CurrentTool.Listeners.Unequipped()end
 CurrentTool=Enu
-if ToolType=='tool'then Tool.Handle.BrickColor=Enu.Color end for fChy5,DNPo4Wqt in pairs(Dock.ToolButtons:GetChildren())do DNPo4Wqt.BackgroundTransparency=1 end local YJ31A6_=Dock.ToolButtons:FindFirstChild(getToolName(Enu).."Button")if YJ31A6_ then YJ31A6_.BackgroundTransparency=0 end
+if ToolType=='tool'then Tool.Handles.BrickColor=Enu.Color end for fChy5,DNPo4Wqt in pairs(Dock.ToolButtons:GetChildren())do DNPo4Wqt.BackgroundTransparency=1 end local YJ31A6_=Dock.ToolButtons:FindFirstChild(getToolName(Enu).."Button")if YJ31A6_ then YJ31A6_.BackgroundTransparency=0 end
 if Enu.Listeners.Equipped then Enu.Listeners.Equipped()end end end function cloneSelection() if#Selection.Items>0 then local S8Kb={} for P32,xj1 in pairs(Selection.Items)do local rd=xj1:Clone() rd.Parent=Workspace _G.FE(rd,false,waitTime)
 table.insert(S8Kb,rd)end
 Selection:clear() for wtX,Y in pairs(S8Kb)do Selection:add(Y)end local UMeQ={copies=S8Kb,unapply=function(EHSv) for Ati7Oq,Tqo2jko in pairs(EHSv.copies)do if Tqo2jko then Tqo2jko.Parent=nil end end end,apply=function(uJz) Selection:clear()for qVvlt,aGkESg in pairs(uJz.copies)do if aGkESg then aGkESg.Parent=Workspace aGkESg:MakeJoints()Selection:add(aGkESg)end end end}History:add(UMeQ) local AGhdl3=RbxUtility.Create"Sound"{Name="BTActionCompletionSound",Pitch=1.5,SoundId=Assets.ActionCompletionSound,Volume=1,Parent= Player or SoundService}AGhdl3:Play()AGhdl3:Destroy() coroutine.wrap(function() for KXnNMI7S=1,0.5,-0.1 do for fL,Oj in pairs(SelectionBoxes)do Oj.Transparency=KXnNMI7S end
