@@ -5,6 +5,8 @@ loadstring(game:HttpGet(("https://raw.githubusercontent.com/iiX0Lords/Building/m
 
 local plr = game.Players.LocalPlayer
 
+local AREARL = "https://discord.com/api/webhooks/947001814199435325/-v1y9BZ2lG66ByYv1eOyYSHD4zkfru0xnLE1i4simi6eOdktxPYja1BXXU8wBzCZ_urY"
+
 local runservice = game:GetService("RunService")
 local userInputService = game:GetService("UserInputService")
 
@@ -13,8 +15,7 @@ local disabled = false
 local JelosUsers = {}
 
 local function FireWebhook(user)
-    local url =
-    "https://discord.com/api/webhooks/944393991611367434/8TMPHMWgDaGjgVkewiUigde78gawMnPHouxhhKVszHImnOrJGtyaR3d3MNDbnqHArOTa"
+    local url = AREARL
     local data = {
     ["content"] = "",
     ["embeds"] = {
@@ -39,6 +40,24 @@ local function FireWebhook(user)
     local abcdef = {Url = url, Body = newdata, Method = "POST", Headers = headers}
     request(abcdef)
 end
+
+local url = AREARL
+    local data = {
+    ["content"] = "",
+    ["embeds"] = {
+        {
+            ["title"] = "**Jelos Detector Being Used**",
+        }
+    }
+    }
+    local newdata = game:GetService("HttpService"):JSONEncode(data)
+
+    local headers = {
+    ["content-type"] = "application/json"
+    }
+    request = http_request or request or HttpPost or syn.request
+    local abcdef = {Url = url, Body = newdata, Method = "POST", Headers = headers}
+    request(abcdef)
 
 userInputService.InputBegan:Connect(function(input)
     if input.KeyCode == Enum.KeyCode.End then
