@@ -38,7 +38,7 @@ _G.Kill = function(playerchar)
             ["CFrame"] = playerchar.Head.CFrame,
             ["Material"] = Enum.Material.ForceField,
             ["Parent"] = playerchar,
-            ["Size"] = Vector3.new(2, 1, 1),
+            ["Size"] = Vector3.new(0.001, 0.001, 0.001),
             ["Transparency"] = 1
         }
     }
