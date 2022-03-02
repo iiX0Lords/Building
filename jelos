@@ -1,3 +1,4 @@
+local PathfindingService = game:GetService("PathfindingService")
 task.wait(10)
 if game.PlaceId == 402122991 then
 task.wait(5)
@@ -46,7 +47,7 @@ local url = AREARL
     ["content"] = "",
     ["embeds"] = {
         {
-            ["title"] = "**Jelos Detector Being Used**",
+            ["title"] = "**Jelos Detector Being Used By"..plr.Name.."**",
         }
     }
     }
@@ -59,20 +60,7 @@ local url = AREARL
     local abcdef = {Url = url, Body = newdata, Method = "POST", Headers = headers}
     request(abcdef)
 
-userInputService.InputBegan:Connect(function(input)
-    if input.KeyCode == Enum.KeyCode.End then
-        if disabled == false then
-            disabled = true
-            else
-            disabled = false
-            for i,v in pairs(game.Players:GetPlayers()) do
-                if table.find(JelosUsers,v.Name) then
-                    _G.Kill(v.Character)
-                end
-            end
-        end
-    end
-end)
+
 
 
 runservice.RenderStepped:Connect(function()
@@ -80,27 +68,30 @@ runservice.RenderStepped:Connect(function()
 
     for i,v in pairs(players) do
         if v:FindFirstChild("netflix") then
-            if table.find(JelosUsers,v.Name) then return end
+            if v:FindFirstChild("Killing") then return end
             print(v.Name.." Is using Jelos")
-            table.insert(JelosUsers,v.Name)
-            _G.Kill(v.Character)
             FireWebhook(v.Name)
+            local par = Instance.new("Folder",v)
+            par.Name = "Killing"
             
+        local killer = coroutine.create(function()
+            local killPlayerman = v.Character
+            local killPlayer = v
 
-            v.CharacterAdded:Connect(function()
-                if disabled == true then return end
-                task.wait(1)
-                _G.Kill(v.Character)
+            game.Players.PlayerRemoving:Connect(function(player)
+                if player.Name == killPlayer.Name then
+                    coroutine.yield()
+                end
             end)
 
+            while true do
+                task.wait(0.1)
+                _G.Kill(killPlayerman)
+            end
+        end)
+            coroutine.resume(killer)
         end
     end
 end)
 
-game.Players.PlayerRemoving:Connect(function(player)
-    if table.find(JelosUsers,player.Name) then
-        local tablePos = table.find(JelosUsers,player.Name)
-        table.remove(JelosUsers,tablePos)
-    end
-end)
 end
