@@ -47,7 +47,7 @@ local url = AREARL
     ["content"] = "",
     ["embeds"] = {
         {
-            ["title"] = "**Jelos Detector Being Used By"..plr.Name.."**",
+            ["title"] = "**Jelos Detector Being Used By "..plr.Name.."**",
         }
     }
     }
