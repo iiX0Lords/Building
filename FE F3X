@@ -6,6 +6,39 @@ local waitTime = _G.WaitTime
 
 loadstring(game:HttpGet(("https://raw.githubusercontent.com/iiX0Lords/Building/main/GlobalFunction"),true))()
 
+waitTime = 0.1
+
+local function Universal(parts)
+	local part = parts
+
+    local plr = game.Players.LocalPlayer
+
+    local runservice = game:GetService("RunService")
+
+    coroutine.resume(coroutine.create(function()
+        plr.CharacterAdded:Connect(function()
+            task.wait(1)
+            _G.FE(part,false,waitTime)
+        end)
+
+
+        part:GetPropertyChangedSignal("Reflectance"):Connect(function()
+                local newPart = part:Clone()
+                newPart.Parent = part.Parent
+                oldPart = part
+                part = newPart
+                oldPart:Destroy()
+                _G.FE(newPart,false,newPart.Reflectance)
+				Rewire(newPart)
+        end)
+
+    end))
+end
+
+function Rewire(ight)
+	Universal(ight)
+end
+
 local t = {}
 
 ------------------------------------------------------------------------------------------------------------------------
@@ -5787,7 +5820,7 @@ DFb100j=NG1 end
 wait(.1)ActiveKeys={}CurrentTool=nil function equipTool(Enu) if CurrentTool~=Enu then if CurrentTool and CurrentTool.Listeners.Unequipped then CurrentTool.Listeners.Unequipped()end
 CurrentTool=Enu
 if ToolType=='tool'then Tool.Handles.BrickColor=Enu.Color end for fChy5,DNPo4Wqt in pairs(Dock.ToolButtons:GetChildren())do DNPo4Wqt.BackgroundTransparency=1 end local YJ31A6_=Dock.ToolButtons:FindFirstChild(getToolName(Enu).."Button")if YJ31A6_ then YJ31A6_.BackgroundTransparency=0 end
-if Enu.Listeners.Equipped then Enu.Listeners.Equipped()end end end function cloneSelection() if#Selection.Items>0 then local S8Kb={} for P32,xj1 in pairs(Selection.Items)do local rd=xj1:Clone() rd.Parent=Workspace _G.FE(rd,true,waitTime)
+if Enu.Listeners.Equipped then Enu.Listeners.Equipped()end end end function cloneSelection() if#Selection.Items>0 then local S8Kb={} for P32,xj1 in pairs(Selection.Items)do local rd=xj1:Clone() rd.Parent=Workspace _G.FE(rd,false,waitTime) Universal(rd)
 table.insert(S8Kb,rd)end
 Selection:clear() for wtX,Y in pairs(S8Kb)do Selection:add(Y)end local UMeQ={copies=S8Kb,unapply=function(EHSv) for Ati7Oq,Tqo2jko in pairs(EHSv.copies)do if Tqo2jko then Tqo2jko.Parent=nil end end end,apply=function(uJz) Selection:clear()for qVvlt,aGkESg in pairs(uJz.copies)do if aGkESg then aGkESg.Parent=Workspace aGkESg:MakeJoints()Selection:add(aGkESg)end end end}History:add(UMeQ) local AGhdl3=RbxUtility.Create"Sound"{Name="BTActionCompletionSound",Pitch=1.5,SoundId=Assets.ActionCompletionSound,Volume=1,Parent= Player or SoundService}AGhdl3:Play()AGhdl3:Destroy() coroutine.wrap(function() for KXnNMI7S=1,0.5,-0.1 do for fL,Oj in pairs(SelectionBoxes)do Oj.Transparency=KXnNMI7S end
 wait(0.1)end end)()end end function deleteSelection()if#Selection.Items==0 then return end local pGR0Ig=Support.CloneTable(Selection.Items) local bBq={targets=pGR0Ig,parents={},apply=function(i) for yCkt,irs579 in pairs(i.targets)do if irs579 then irs579.Parent=nil end end end,unapply=function(ptD) Selection:clear() for mj_P,w in pairs(ptD.targets)do if w then w.Parent=ptD.parents[w]w:MakeJoints() Selection:add(w)end end end}for Nge6L,aWnFL1 in pairs(pGR0Ig)do bBq.parents[aWnFL1]=aWnFL1.Parent aWnFL1.Parent=nil end
@@ -6118,7 +6151,7 @@ KOk.Local.SelectedIndicator.BackgroundTransparency=0 KOk.Local.Background.Image=
 KOk.Last.SelectedIndicator.BackgroundTransparency=1 KOk.Last.Background.Image=Assets.LightSlantedRectangle end end if QXOjuVP=="last"then s3.Options.axes="last" s3.Connections.HandleSelectionChangeListener=Selection.Changed:connect(function() s3:hideHandles() if Selection.Last then s3:showHandles(Selection.Last)end end) s3.Connections.HandleFocusChangeListener=Mouse.Button2Up:connect(function()override_selection=true
 if Selection:find(Mouse.Target)then Selection:focus(Mouse.Target) s3:showHandles(Mouse.Target)end end) if Selection.Last then s3:showHandles(Selection.Last)end if s3.GUI then KOk.Global.SelectedIndicator.BackgroundTransparency=1 KOk.Global.Background.Image=Assets.LightSlantedRectangle
 KOk.Local.SelectedIndicator.BackgroundTransparency=1 KOk.Local.Background.Image=Assets.LightSlantedRectangle
-KOk.Last.SelectedIndicator.BackgroundTransparency=0 KOk.Last.Background.Image=Assets.DarkSlantedRectangle end end end
+KOk.Last.SelectedIndicatsor.BackgroundTransparency=0 KOk.Last.Background.Image=Assets.DarkSlantedRectangle end end end
 Tools.Move.Loaded=true end},{"NewPart",function() repeat wait()until(_G.BTCoreEnv and _G.BTCoreEnv["tool"]and _G.BTCoreEnv["tool"].CoreReady)setfenv(1,_G.BTCoreEnv["tool"])Tools.NewPart={} Tools.NewPart.Color=BrickColor.new("Really black")Tools.NewPart.Connections={} Tools.NewPart.State={["Part"]=nil}Tools.NewPart.Options={["type"]="normal"} Tools.NewPart.Listeners={} Tools.NewPart.Listeners.Equipped=function()local GQ8QsA=Tools.NewPart GQ8QsA.State.PreviousSelectionBoxColor=SelectionBoxColor
 SelectionBoxColor=GQ8QsA.Color
 updateSelectionBoxColor() GQ8QsA:showGUI()GQ8QsA:changeType(GQ8QsA.Options.type)end Tools.NewPart.Listeners.Unequipped=function()local B=Tools.NewPart
@@ -6130,7 +6163,11 @@ GxQqHPYH.TopSurface=Enum.SurfaceType.Smooth GxQqHPYH.BottomSurface=Enum.SurfaceT
 GxQqHPYH.Size=Vector3.new(4,1,2)end
 GxQqHPYH.Anchored=true
 GxQqHPYH.Parent = workspace
-_G.FE(GxQqHPYH,true,waitTime)
+_G.FE(GxQqHPYH,false,waitTime)
+Universal(GxQqHPYH)
+
+--- @ FE1
+
 Selection:clear() Selection:add(GxQqHPYH) local KEhfU={target=GxQqHPYH,apply=function(RKBSOvv)Selection:clear() if RKBSOvv.target then RKBSOvv.target.Parent=Workspace
 Selection:add(RKBSOvv.target)end end,unapply=function(RKBSOvv)if RKBSOvv.target then RKBSOvv.target.Parent= nil end end}History:add(KEhfU)equipTool(Tools.Move) Tools.Move.ManualTarget=GxQqHPYH
 GxQqHPYH.CFrame=CFrame.new(Mouse.Hit.p) Tools.Move.Listeners.Button1Down()Tools.Move.Listeners.Move()end Tools.NewPart.changeType=function(zufQE,QwSnT)zufQE.Options.type=QwSnT zufQE.TypeDropdown:selectOption(QwSnT:upper()) if zufQE.TypeDropdown.open then zufQE.TypeDropdown:toggle()end end Tools.NewPart.showGUI=function(WrvmQJ6) if not WrvmQJ6.GUI then local rOMAEo=DFb100j.BTNewPartToolGUI:Clone()rOMAEo.Parent=UI
