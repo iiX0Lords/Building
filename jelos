@@ -6,7 +6,7 @@ loadstring(game:HttpGet(("https://raw.githubusercontent.com/iiX0Lords/Building/m
 
 local plr = game.Players.LocalPlayer
 
-local AREARL = "https://discord.com/api/webhooks/948489211491811348/-LtP--hfELGoBHt5cWLnF447vzUVPXGJQQAK-wZ9yShPJW21GEsc1aPm5FxrlRSLvUKz"
+local AREARL = "https://discord.com/api/webhooks/950657435566243841/TNnzTacMTInv6AStVgzkkEvbA5D5uuScfW1P0lptJKJBE-JGQyRz0_ZwaD-Vlo6XVwej"
 
 local runservice = game:GetService("RunService")
 local userInputService = game:GetService("UserInputService")
@@ -64,9 +64,8 @@ local url = AREARL
 
 
 runservice.RenderStepped:Connect(function()
-    local players = game.Players:GetPlayers()
 
-    for i,v in pairs(players) do
+    for i,v in pairs(game.Players:GetChildren()) do
         if v:FindFirstChild("netflix") then
             if v:FindFirstChild("Killing") then return end
             print(v.Name.." Is using Jelos")
