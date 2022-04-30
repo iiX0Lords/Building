@@ -6,7 +6,7 @@
 
 
 --- Customization ---
-useRayCasting = true
+useRayCasting = false
 --- Speed Values ---
 speed = .2
 ascendSpeed = .1
