@@ -90,7 +90,7 @@ function library:Keybind(key)
     if keybindConnection then keybindConnection:Disconnect() end
 
     keybindConnection = uis.InputBegan:Connect(function(input, gp)
-        if not gp and input.KeyCode == Enum.KeyCode[key] then
+        if not gp and input.KeyCode == key then
             LordLib.Enabled = not LordLib.Enabled
         end
     end)
