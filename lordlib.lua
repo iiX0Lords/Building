@@ -55,6 +55,14 @@ if destroyed then
    obj.Parent = game.CoreGui
    return
 end
+if syn and syn.protect_gui then
+syn.protect_gui(obj)
+obj.Parent = game.CoreGui
+elseif PROTOSMASHER_LOADED then
+obj.Parent = get_hidden_gui()
+else
+obj.Parent = game.CoreGui
+end
 end
 local LordLib = Instance.new("ScreenGui")
 
