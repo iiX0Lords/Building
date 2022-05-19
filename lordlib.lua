@@ -10,11 +10,6 @@ local destroyed
 
 local colorPickers = {}
 
-if game.CoreGui:FindFirstChild('LordLib') then
-    game.CoreGui:FindFirstChild('LordLib'):Destroy()
-    destroyed = true
-end
-
 function Lerp(a, b, c)
     return a + ((b - a) * c)
 end
@@ -963,6 +958,11 @@ end
 local debug = false
 if not debug then
 return library
+end
+
+if game.CoreGui:FindFirstChild('LordLib') then
+    game.CoreGui:FindFirstChild('LordLib'):Destroy()
+    destroyed = true
 end
 
 local window = library:Window("Window",Color3.fromRGB(35,35,35),Color3.fromRGB(28,28,28))
