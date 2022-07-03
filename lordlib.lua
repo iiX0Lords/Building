@@ -965,20 +965,4 @@ if game.CoreGui:FindFirstChild('LordLib') then
     destroyed = true
 end
 
-local window = library:Window("Window",Color3.fromRGB(35,35,35),Color3.fromRGB(28,28,28))
-
-window:Slider("Walkspeed",16,100,16,function(value)
-    print(value)
-end)
-
-window:Label("This is text",Color3.fromRGB(255,255,255))
-window:Seperator(10)
-window:Button("This is a button",Color3.fromRGB(35,35,35),function()
-    library:Destroy()
-end)
-window:Dropdown("Dropdown",{"Button1","Button2"},Color3.fromRGB(35,35,35),function(selected)
-    print(selected)
-end)
-window:Toggle("Toggle",false,function(state)
-    print(state)
-end)
+return library
