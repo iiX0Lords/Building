@@ -112,7 +112,8 @@ end
 
 
 _G.station = function(part)
-    local last = 0
+    spawn(function()
+        local last = 0
 
     local first = true
 
@@ -149,6 +150,7 @@ _G.station = function(part)
 
     game.Players.PlayerAdded:Connect(function(player)
         up()
+    end)
     end)
 
 end
