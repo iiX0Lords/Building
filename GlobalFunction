@@ -86,7 +86,7 @@ _G.FE = function(part,BreakOnDeath,waittime)
                         ["Reflectance"] = 0,
                         ["CanCollide"] = part.CanCollide,
                         ["Orientation"] = part.Orientation,
-			["Name"] = part.Name,
+			            ["Name"] = part.Name,
                         ["Shape"] = part.Shape,
                         ["Velocity"] = part.Velocity,
                         ["Size"] = part.Size,
@@ -107,6 +107,50 @@ _G.FE = function(part,BreakOnDeath,waittime)
             end
         end)
     coroutine.resume(loop) --- Plays the loop
+end
+
+
+
+_G.station = function(part)
+    local last = 0
+
+    local first = true
+
+    function up()
+        if not first then
+            last = last + 0.0001
+        end
+        first = false
+        local args = {
+            [1] = "FireOtherClients",
+            [2] = "drawLaser",
+            [3] = Vector3.new(0,0,0),
+            [4] = Vector3.new(0,0,0),
+            [5] = {
+                ["TopSurface"] = "hello bro",
+                ["CFrame"] = part.CFrame,
+                ["Material"] = part.Material,
+                ["BrickColor"] = part.BrickColor,
+                ["Reflectance"] = 0,
+                ["CanCollide"] = part.CanCollide,
+                ["Orientation"] = part.Orientation,
+                ["Name"] = part.Name,
+                ["Shape"] = part.Shape,
+                ["Velocity"] = part.Velocity,
+                ["Size"] = part.Size,
+                ["Transparency"] = part.Transparency
+            }
+        }
+    
+        workspace.resources.RemoteEvent:FireServer(unpack(args))
+    end
+
+    up()
+
+    game.Players.PlayerAdded:Connect(function(player)
+        up()
+    end)
+
 end
 
 _G.MakePart = function(part,BreakOnDeath,waittime)
