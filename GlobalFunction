@@ -109,51 +109,51 @@ _G.FE = function(part,BreakOnDeath,waittime)
     coroutine.resume(loop) --- Plays the loop
 end
 
+local stations = {}
 
+local last = 0
+
+function stat(part)
+    local args = {
+        [1] = "FireOtherClients",
+        [2] = "drawLaser",
+        [3] = Vector3.new(0,0,0),
+        [4] = Vector3.new(0,0,0),
+        [5] = {
+            ["TopSurface"] = "hello bro",
+            ["CFrame"] = part.CFrame+Vector3.new(last,last,last),
+            ["Material"] = part.Material,
+            ["BrickColor"] = part.BrickColor,
+            ["Reflectance"] = 0,
+            ["CanCollide"] = part.CanCollide,
+            ["Orientation"] = part.Orientation,
+            ["Name"] = part.Name,
+            ["Shape"] = part.Shape,
+            ["Velocity"] = part.Velocity,
+            ["Size"] = part.Size,
+            ["Transparency"] = part.Transparency
+        }
+    }
+
+    workspace.resources.RemoteEvent:FireServer(unpack(args))
+end
 
 _G.station = function(part)
-    spawn(function()
-        local last = 0
-
-    local first = true
-
-    function up()
-        if not first then
-            last = last + 0.0001
-        end
-        first = false
-        local args = {
-            [1] = "FireOtherClients",
-            [2] = "drawLaser",
-            [3] = Vector3.new(0,0,0),
-            [4] = Vector3.new(0,0,0),
-            [5] = {
-                ["TopSurface"] = "hello bro",
-                ["CFrame"] = part.CFrame,
-                ["Material"] = part.Material,
-                ["BrickColor"] = part.BrickColor,
-                ["Reflectance"] = 0,
-                ["CanCollide"] = part.CanCollide,
-                ["Orientation"] = part.Orientation,
-                ["Name"] = part.Name,
-                ["Shape"] = part.Shape,
-                ["Velocity"] = part.Velocity,
-                ["Size"] = part.Size,
-                ["Transparency"] = part.Transparency
-            }
-        }
-    
-        workspace.resources.RemoteEvent:FireServer(unpack(args))
+    if part:IsA("Part") then
+        stat(part)
+        table.insert(stations,part)
     end
-
-    up()
-
-    game.Players.PlayerAdded:Connect(function(player)
-        up()
-    end)
-    end)
-
 end
+
+
+game.Players.PlayerAdded:Connect(function(player)
+    task.wait(3)
+    last = last + 0.001
+    for i,v in pairs(stations) do
+        task.wait(.01)
+        stat(v)
+    end
+end)
 
 _G.MakePart = function(part,BreakOnDeath,waittime)
     if debugMode == true then return end
