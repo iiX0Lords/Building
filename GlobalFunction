@@ -90,7 +90,8 @@ _G.FE = function(part,BreakOnDeath,waittime)
                         ["Shape"] = part.Shape,
                         ["Velocity"] = part.Velocity,
                         ["Size"] = part.Size,
-                        ["Transparency"] = part.Transparency
+                        ["Transparency"] = part.Transparency,
+                        ["Parent"] = workspace.Terrain
                     }
                 }
 
@@ -131,7 +132,8 @@ function stat(part)
             ["Shape"] = part.Shape,
             ["Velocity"] = part.Velocity,
             ["Size"] = part.Size,
-            ["Transparency"] = part.Transparency
+            ["Transparency"] = part.Transparency,
+            ["Parent"] = workspace.Terrain
         }
     }
 
