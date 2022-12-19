@@ -149,12 +149,14 @@ end
 
 
 game.Players.PlayerAdded:Connect(function(player)
-    task.wait(3)
-    last = last + 0.001
-    for i,v in pairs(stations) do
-        task.wait(.01)
-        stat(v)
-    end
+    spawn(function()
+        task.wait(3)
+        last = last + 0.001
+        for i,v in pairs(stations) do
+            task.wait(.01)
+            stat(v)
+        end
+    end)
 end)
 
 _G.MakePart = function(part,BreakOnDeath,waittime)
