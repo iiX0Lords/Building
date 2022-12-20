@@ -154,7 +154,7 @@ game.Players.PlayerAdded:Connect(function(player)
         last = last + 0.001
         for i,v in pairs(stations) do
             stat(v)
-            task.wait(2)
+            task.wait(0.5)
         end
     end)
 end)
