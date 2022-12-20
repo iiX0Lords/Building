@@ -150,7 +150,7 @@ end
 
 game.Players.PlayerAdded:Connect(function(player)
     spawn(function()
-        task.wait(3)
+        task.wait(6)
         last = last + 0.001
         for i,v in pairs(stations) do
             stat(v)
