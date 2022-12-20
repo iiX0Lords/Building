@@ -10,7 +10,7 @@ local sentDepMessage = false
 local SendNotif = function(text)
     local NotificationBindable = Instance.new("BindableFunction")
     game.StarterGui:SetCore("SendNotification",  {
-    Title = "Redwood Script";
+    Title = "Redwood Building";
     Text = text;
     Icon = "";
     Duration = 5;
@@ -154,7 +154,6 @@ game.Players.PlayerAdded:Connect(function(player)
         last = last + 0.001
         for i,v in pairs(stations) do
             stat(v)
-            task.wait(0.5)
         end
     end)
 end)
@@ -227,3 +226,6 @@ _G.MakePart = function(part,BreakOnDeath,waittime)
         end)
     coroutine.resume(loop) --- Plays the loop
 end
+
+
+SendNotif("Script Successfully loaded")
