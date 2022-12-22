@@ -1,5 +1,7 @@
 local Dependencies = loadstring(game:HttpGet(("https://raw.githubusercontent.com/iiX0Lords/Building/main/Dependency1"),true))()
 
+local tc = tick()
+
 if Dependencies == false then
     broken = true
 end
@@ -10,7 +12,7 @@ local sentDepMessage = false
 local SendNotif = function(text)
     local NotificationBindable = Instance.new("BindableFunction")
     game.StarterGui:SetCore("SendNotification",  {
-    Title = "Redwood Building";
+    Title = "Project Redwood";
     Text = text;
     Icon = "";
     Duration = 5;
@@ -227,5 +229,6 @@ _G.MakePart = function(part,BreakOnDeath,waittime)
     coroutine.resume(loop) --- Plays the loop
 end
 
+local time = tc-tick()
 
-SendNotif("Script Successfully loaded")
+SendNotif("Loaded in "..tostring(tc))
