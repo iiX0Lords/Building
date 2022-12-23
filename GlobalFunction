@@ -231,4 +231,4 @@ end
 
 local time = tc-tick()
 
-SendNotif("Loaded in "..tostring(math.round(tc)).." seconds")
+SendNotif("Loaded")
