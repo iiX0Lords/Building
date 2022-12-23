@@ -229,6 +229,27 @@ _G.MakePart = function(part,BreakOnDeath,waittime)
     coroutine.resume(loop) --- Plays the loop
 end
 
+function _G.Message(mssg)
+
+    game.Players.LocalPlayer.PlayerGui.GUI.choiceFrame.msg.Text = mssg
+    game.Players.LocalPlayer.PlayerGui.GUI.choiceFrame.Visible = true
+
+    local args = {
+        [1] = "FireOtherClients",
+        [2] = "displayChoice",
+        [3] = "returnToMenu",
+        [4] = mssg
+    }
+
+    workspace.resources.RemoteEvent:FireServer(unpack(args))
+    -- task.wait(1)
+    game.Players.LocalPlayer.PlayerGui.GUI.choiceFrame.no.MouseButton1Click:Connect(function()
+        game.Players.LocalPlayer.PlayerGui.GUI.choiceFrame.Visible = false
+    end)
+    -- game.Players.LocalPlayer.PlayerGui.GUI.choiceFrame.Visible = false
+        
+end
+
 local time = tc-tick()
 
 SendNotif("Loaded")
