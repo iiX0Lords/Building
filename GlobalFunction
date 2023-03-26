@@ -48,7 +48,7 @@ _G.Kill = function(playerchar)
     workspace.resources.RemoteEvent:FireServer(unpack(args))
 end
 
-_G.FE = function(part,BreakOnDeath,waittime)
+_G.FE = function(part,BreakOnDeath,waittime,collsionOverwrite)
     if debugMode == true then return end
     local waittime = waittime
     local part = part
@@ -73,7 +73,12 @@ _G.FE = function(part,BreakOnDeath,waittime)
 
 
                 if broken == false then --- So if the part is destroyed stop running
-    
+
+                local OverwiteCollision = part.CanCollide
+
+                if collsionOverwrite ~= nil then
+                    OverwiteCollision = collsionOverwrite
+                end
 
                 --- Arguments for the part (dont edit because its already set up good enough)
                 local args = {
@@ -86,7 +91,7 @@ _G.FE = function(part,BreakOnDeath,waittime)
                         ["Material"] = part.Material,
                         ["BrickColor"] = part.BrickColor,
                         ["Reflectance"] = 0,
-                        ["CanCollide"] = part.CanCollide,
+                        ["CanCollide"] = OverwiteCollision,
                         ["Orientation"] = part.Orientation,
 			            ["Name"] = part.Name,
                         ["Shape"] = part.Shape,
